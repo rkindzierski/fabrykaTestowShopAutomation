@@ -1,5 +1,6 @@
 import HomePage from "../page-objects/homePage"
 import AccountPage from "../page-objects/myAccountPage"
+import { faker } from '@faker-js/faker'
 
 
 describe('login scenario', () => {
@@ -17,6 +18,14 @@ describe('login scenario', () => {
         accountPage.fillPasswordField(this.userData.password)
         accountPage.clickLoginButton()
         accountPage.checkVisibilityOfMyAccountNavigation()
+    })
+
+    it('should not login to the application', function () {
+        accountPage.visitPage()
+        accountPage.fillUsernameFieldWithEmail(faker.internet.email())
+        accountPage.fillPasswordField(faker.internet.password())
+        accountPage.clickLoginButton()
+        accountPage.checkVisibilityOfErrorAfterWrongLogin()
     })
 
 
