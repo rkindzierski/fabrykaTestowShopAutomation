@@ -3,7 +3,7 @@ orbs:
   cypress: cypress-io/cypress@2.2.0
 workflows:
   build:
-    jobs: 
+    jobs:
       - cypress/install
       - cypress/run:
         requires:
