@@ -5,11 +5,15 @@ describe ('basket tests', () => {
     const homePage = new HomePage()
     const cartPage = new CartPage()
 
+    before(function () {
+        cy.fixture('products.json').as('productData')
+    })
+
     it('should add product to cart and delete it from there', function (){
         homePage.visitPage()
-        homePage.addProductToCart()
+        homePage.addProductToCart(this.productData.HoodieWithZipper)
         homePage.clickGoToCartFromProductButton()
-        cartPage.checkThatAddedProductIsInCart()
+        cartPage.checkThatAddedProductIsInCart(this.productData.HoodieWithZipper)
         cartPage.removeItemFromCart()
         cartPage.checkThatCartIsEmpty()
     })
