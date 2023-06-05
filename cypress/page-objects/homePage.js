@@ -3,20 +3,23 @@ import Urls from "./urls";
 const myAccountHeaderButton ='#menu-item-100'
 const dataBlockNameNew = 'div[data-block-name="woocommerce/product-new"]'
 const checkCarFromProductLevel = '.added_to_cart.wc-forward'
-export const Product = {
-    HoodieWithZipper: {
-        Locator: 'a[data-product_id="51"]',
-        Name: 'Hoodie with Zipper'
-    },
-    Polo: {
-        Locator: 'a[data-product_id="53"]',
-        Name: 'Polo'
-    },
-    Sunglasses: {
-        Locator: 'a[data-product_id="49"]',
-        Name: 'Sunglasses'
-    }
-}
+
+// Products were moved to products.json fixture
+//
+// export const Product = {
+//     HoodieWithZipper: {
+//         Locator: 'a[data-product_id="51"]',
+//         Name: 'Hoodie with Zipper'
+//     },
+//     Polo: {
+//         Locator: 'a[data-product_id="53"]',
+//         Name: 'Polo'
+//     },
+//     Sunglasses: {
+//         Locator: 'a[data-product_id="49"]',
+//         Name: 'Sunglasses'
+//     }
+// }
 
 
 
@@ -26,9 +29,9 @@ class HomePage{
         cy.get(myAccountHeaderButton).click()
     }
 
-    addProductToCart() {
+    addProductToCart(HoodieWithZipper) {
         cy.get(dataBlockNameNew).within(()=>{
-            cy.get(Product.HoodieWithZipper.Locator).click()
+            cy.get(HoodieWithZipper.Locator).click()
         })
     }
 

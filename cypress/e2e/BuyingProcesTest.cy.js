@@ -7,14 +7,18 @@ describe('testing successful buying process', () => {
     const cartPage = new CartPage
     const orderPage = new OrderPage
 
+    before(function () {
+        cy.fixture('products.json').as('productData')
+    })
+
     it('should order a product from the shop', function(){
         homePage.visitPage()
-        homePage.addProductToCart()
+        homePage.addProductToCart(this.productData.HoodieWithZipper)
         homePage.clickGoToCartFromProductButton()
-        cartPage.checkThatAddedProductIsInCart()
+        cartPage.checkThatAddedProductIsInCart(this.productData.HoodieWithZipper)
         cartPage.clickGoToPaymentsButton()
         orderPage.fillAllRequiredFields()
         orderPage.clickOrderFinishButton()
-        orderPage.checkOrderFinished()
+        orderPage.checkOrderFinishedNumber()
     })
 })
