@@ -25,7 +25,7 @@ const checkCarFromProductLevel = '.added_to_cart.wc-forward'
 
 class HomePage{
 
-    clickmyAccountHeaderButton(){
+    clickMyAccountHeaderButton(){
         cy.get(myAccountHeaderButton).click()
     }
 
@@ -43,7 +43,7 @@ class HomePage{
 
     visitPage(){
         const urls = new Urls
-        urls.visitHopePage()
+        urls.visitHomePage()
     }
 }
 

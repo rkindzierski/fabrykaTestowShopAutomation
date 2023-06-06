@@ -1,5 +1,5 @@
 class Urls {
-    visitHopePage(){
+    visitHomePage(){
         const url = '/'
         cy.visit(url)
     }

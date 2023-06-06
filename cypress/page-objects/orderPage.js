@@ -29,10 +29,6 @@ class OrderPage {
         cy.get(finishOrderButton).click()
     }
 
-    // checkOrderFinished() {
-    //     cy.contains('Zamówienie otrzymane', {timeout: 15000}).should('exist')
-    //     }
-
     checkOrderFinishedNumber(){
         cy.get(completedOrderNumber, {timeout: 20000}).should('contain', 'Numer zamówienia:')
     }

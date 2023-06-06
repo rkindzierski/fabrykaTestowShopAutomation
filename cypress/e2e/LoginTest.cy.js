@@ -13,7 +13,7 @@ describe('login scenario', () => {
 
     it('should login to the application', function () {
         homePage.visitPage()
-        homePage.clickmyAccountHeaderButton()
+        homePage.clickMyAccountHeaderButton()
         accountPage.fillUsernameFieldWithEmail(this.userData.email)
         accountPage.fillPasswordField(this.userData.password)
         accountPage.clickLoginButton()
