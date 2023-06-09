@@ -11,4 +11,9 @@ workflows:
             store_artifacts: true
             parallel: true
             parallelism: 3
+            steps:
+              - run:
+                command: |
+                  echo $(circleci test glob "cypress\e2e\BasketTest.cy.js" "cypress\e2e\BuyingProcesTest.cy.js" "cypress\e2e\LoginTest.cy.js")
+                  circleci tests glob "cypress\e2e\BasketTest.cy.js" "cypress\e2e\BuyingProcesTest.cy.js" "cypress\e2e\LoginTest.cy.js" | circleci tests split
             group: 2 machines
