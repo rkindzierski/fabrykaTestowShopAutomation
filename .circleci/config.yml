@@ -10,7 +10,8 @@ workflows:
               - cypress/install
             store_artifacts: true
             parallel: true
-            parallelism: 3
-            run: |
-              TEST=$(circleci tests glob "cypress/e2e/BasketTest.cy.js" "cypress/e2e/BuyingProcesTest.cy.js" "cypress/e2e/LoginTest.cy.js" | circleci tests split)
-            group: 2 machines
+        - name: Splotting tests
+          parallelism: 3
+          run: |
+            TEST=$(circleci tests glob "cypress/e2e/BasketTest.cy.js" "cypress/e2e/BuyingProcesTest.cy.js" "cypress/e2e/LoginTest.cy.js" | circleci tests split)
+          group: 2 machines
