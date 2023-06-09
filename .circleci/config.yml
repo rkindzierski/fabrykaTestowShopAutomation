@@ -12,5 +12,6 @@ workflows:
             parallel: true
             parallelism: 3
             command: |
-              TEST=$(circleci tests glob "cypress\e2e\BasketTest.cy.js" "cypress\e2e\BuyingProcesTest.cy.js" "cypress\e2e\LoginTest.cy.js" | circleci tests split) cypress run --spec $TEST
+              TEST=$(circleci tests glob "cypress\e2e\BasketTest.cy.js" "cypress\e2e\BuyingProcesTest.cy.js" "cypress\e2e\LoginTest.cy.js" | circleci tests split) 
+              cypress run --spec $TEST
             group: 2 machines
