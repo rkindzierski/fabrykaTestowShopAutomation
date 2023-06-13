@@ -1,38 +1,19 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@2.2.0
-
+  cypress: cypress-io/cypress@3
 workflows:
   build:
     jobs:
-      - cypress/install
-      - cypress/run1:
-          requires:
-            - cypress/install
-          parallelism: 1
-          steps:
-            - run:
-                name: Run Test 1
+        - cypress/install
+        - cypress/run:
+            requires:
+              - cypress/install
+            store_artifacts: true
+            parallel: true
+            parallelism: 3
+            group: 3 machines
+            steps:
+              - run:
                 command: |
-                  circleci tests glob "cypress/e2e/Test1.cy.js" | circleci tests split
-                  yarn cypress run --parallel --record --key YOUR_RECORD_KEY
-      - cypress/run2:
-          requires:
-            - cypress/install
-          parallelism: 1
-          steps:
-            - run:
-                name: Run Test 2
-                command: |
-                  circleci tests glob "cypress/e2e/Test2.cy.js" | circleci tests split
-                  yarn cypress run --parallel --record --key YOUR_RECORD_KEY
-      - cypress/run3:
-          requires:
-            - cypress/install
-          parallelism: 1
-          steps:
-            - run:
-                name: Run Test 3
-                command: |
-                  circleci tests glob "cypress/e2e/Test3.cy.js" | circleci tests split
-                  yarn cypress run --parallel --record --key YOUR_RECORD_KEY
+                  TEST=$(circleci tests glob "cypress/e2e/*Test.cy.js") | circleci tests split
+                  npm run cypress --spec $TEST
