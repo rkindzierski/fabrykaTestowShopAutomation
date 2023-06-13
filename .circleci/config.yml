@@ -4,18 +4,8 @@ orbs:
 workflows:
   build:
     jobs:
-      - cypress/install
       - cypress/run:
-          requires:
-            - cypress/install
-          store_artifacts: true
-          parallel: true
-          parallelism: 3
-          group: 3 machines
-          steps:
-            - run:
-                name: Run Cypress Tests
-                command: |
-                  TEST=$(circleci tests glob "cypress/e2e/*Test.cy.js")
-                  circleci tests split --split-by=timings
-                  npm run cypress -- --spec "$TEST"
+          start-command: 'npm run start'
+          cypress-command:
+            'npx cypress run --parallel --record --group all tests'
+          parallelism: 4
