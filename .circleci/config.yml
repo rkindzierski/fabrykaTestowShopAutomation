@@ -8,4 +8,9 @@ workflows:
           start-command: 'npm run start'
           cypress-command:
             'npx cypress run --parallel --record --key CYPRESS_RECORD_KEY --group all tests'
-          parallelism: 4
+          parallelism: 3
+          steps:
+              - run:
+                command: |
+                  TEST=$(circleci tests glob "cypress/e2e/*Test.cy.js") | circleci tests split
+                  npm run cypress --spec $TEST
