@@ -1,11 +1,11 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@3
+  cypress: cypress-io/cypress@2.2.0
 workflows:
   build:
     jobs:
       - cypress/run:
-          start-command: 'npm run cypress'
+          start-command: 'npm run start'
           cypress-command:
             'npx cypress run --parallel --record --key CYPRESS_RECORD_KEY --group all tests'
           parallelism: 3
