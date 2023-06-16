@@ -1,11 +1,19 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@2.2.0
+  cypress: cypress-io/cypress@3
 workflows:
   build:
     jobs:
-      - cypress/run:
-          start-command: 'npm run start'
-          cypress-command:
-            'npx cypress run --parallel --record --key CYPRESS_RECORD_KEY --group all tests'
-          parallelism: 3
+        - cypress/install
+        - cypress/run:
+            requires:
+                - cypress/install
+            store_artifacts: true
+            parallel: true
+            parallelism: 3
+            group: 3 machines
+            steps:
+                - run:
+                  command: |
+                    TEST=$(circleci tests glob "cypress/e2e/*Test.cy.js") | circleci tests split
+                    npm run cypress --spec $TEST
