@@ -16,4 +16,4 @@ workflows:
             - run: 
                 command: |
                     TEST=$(circleci tests glob "cypress/e2e/*Test.cy.js") | circleci tests split
-                    npm run cypress --spec $TEST
+                    npx run cypress --spec $TEST
