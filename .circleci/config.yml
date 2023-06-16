@@ -5,21 +5,20 @@ workflows:
   build:
     jobs:
       - cypress/install
-
       - cypress/run:
-          name: Run tests
+          name: 'Run tests'
           requires:
             - cypress/install
           install-command: echo 'Everthing was already installed'
-          stadr: npm start
+          start-command: 'npm run start'
           no-workspace: true
           record: true
           
           parallel: true
           parallelism: 3
-          group: 3 machines
+          group: '3 machines'
           steps:
             - run: 
                 command: |
                     TEST=$(circleci tests glob "cypress/e2e/*Test.cy.js") | circleci tests split
-                    npx run cypress --spec $TEST
+                    npx run cypress --record --spec $TEST
