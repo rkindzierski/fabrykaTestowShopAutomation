@@ -4,16 +4,16 @@ orbs:
 workflows:
   build:
     jobs:
-        - cypress/install
-        - cypress/run:
-            requires:
-                - cypress/install
-            store_artifacts: true
-            parallel: true
-            parallelism: 3
-            group: 3 machines
-            steps:
-                - run:
-                  command: |
+      - cypress/install
+      - cypress/run:
+          requires:
+            - cypress/install
+          store_artifacts: true
+          parallel: true
+          parallelism: 3
+          group: 3 machines
+          steps:
+            - run: 
+                command: |
                     TEST=$(circleci tests glob "cypress/e2e/*Test.cy.js") | circleci tests split
                     npm run cypress --spec $TEST
